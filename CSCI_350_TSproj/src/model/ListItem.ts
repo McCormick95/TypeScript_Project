@@ -9,6 +9,7 @@ export default class ListItem implements Item{
         private _id: string = '',
         private _item: string = '',
         private _checked: boolean = false,
+        private _responsible: string = '', // New parameter for responsible person
     ){}
 
     get id(){
@@ -33,5 +34,14 @@ export default class ListItem implements Item{
 
     set checked(checked: boolean){
         this._checked = checked;
-    }   
+    } 
+
+    get responsible() {
+        return this._responsible;
+    }
+
+    set responsible(responsible: string) {
+        this._responsible = responsible;
+    }
+
 }
