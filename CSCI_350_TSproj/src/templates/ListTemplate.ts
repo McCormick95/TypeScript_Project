@@ -49,14 +49,51 @@ export default class ListTemplate implements DOMList{
             const label = document.createElement('label') as HTMLLabelElement;
             label.htmlFor = item.id;
             label.textContent = item.item;
+            label.style.marginRight = "10px";
 
             li.append(label);
+            const responsibleLabel = document.createElement('label') as HTMLLabelElement;
+            responsibleLabel.textContent = "Assigned:";
+            responsibleLabel.style.fontSize = "14px";
+            responsibleLabel.style.marginLeft = "5px";
+            responsibleLabel.style.marginLeft = "5px";
+            responsibleLabel.style.marginRight = "20px";
+            li.append(responsibleLabel);
             li.append(responsibleText);
+
+            // code for priority
+            const prioritySelect = document.createElement('select') as HTMLSelectElement;
+            prioritySelect.style.width = '100px'; // set the width of the dropdown
+            prioritySelect.style.height = '45px';
+            prioritySelect.style.marginLeft = "5px"; // set the height of the dropdown
+            const options = ['High', 'Medium', 'Low'];
+            options.forEach(option => {
+                const optElement = document.createElement('option');
+                optElement.value = option;
+                optElement.textContent = option;
+                if (item.priority === option) {
+                    optElement.selected = true;
+                }
+                prioritySelect.append(optElement);
+            });
+
+            prioritySelect.addEventListener('change', () => {
+                item.priority = prioritySelect.value;
+                fullList.saveList();
+            });
+            const priorityLabel = document.createElement('label') as HTMLLabelElement;
+            priorityLabel.textContent = "Priority:";
+            priorityLabel.style.fontSize = "14px";
+            priorityLabel.style.marginRight = "5px";
+            li.append(priorityLabel);
+            li.append(prioritySelect);
 
             const editButton = document.createElement('button') as HTMLButtonElement;
             editButton.className = "edit";
             editButton.textContent = "Edit";
             li.append(editButton);
+
+
 
             editButton.addEventListener('click', () => {
                 const input = document.createElement('input') as HTMLInputElement;

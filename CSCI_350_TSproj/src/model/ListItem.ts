@@ -9,7 +9,8 @@ export default class ListItem implements Item{
         private _id: string = '',
         private _item: string = '',
         private _checked: boolean = false,
-        private _responsible: string = '', // New parameter for responsible person
+        private _responsible: string = '',
+        private _priority: string = '',
     ){}
 
     get id(){
@@ -42,6 +43,14 @@ export default class ListItem implements Item{
 
     set responsible(responsible: string) {
         this._responsible = responsible;
+    }
+
+    get priority() {
+        return this._priority;
+    }
+
+    set priority(priority: string) {
+        this._priority = priority;
     }
 
 }
